@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const sveltePreprocess = require('svelte-preprocess');
 const path = require('path');
 const config = require('sapper/config/webpack.js');
 const pkg = require('./package.json');
@@ -24,7 +26,12 @@ module.exports = {
 						options: {
 							dev,
 							hydratable: true,
-							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
+							hotReload: false, // pending https://github.com/sveltejs/svelte/issues/2377
+              preprocess: sveltePreprocess({
+                postcss: {
+                  plugins: [autoprefixer()]
+                }
+              })
 						}
 					}
 				}
@@ -57,7 +64,12 @@ module.exports = {
 						options: {
 							css: false,
 							generate: 'ssr',
-							dev
+							dev,
+              preprocess: sveltePreprocess({
+                postcss: {
+                  plugins: [autoprefixer()]
+                }
+              })
 						}
 					}
 				}

@@ -3,7 +3,7 @@
   "description": "Rustic",
   "version": "0.0.1",
   "scripts": {
-    "dev": "PORT=62969 sapper dev --no-hot",
+    "dev": "PORT=62969 sapper dev --no-hot --dev-port 50001",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build",
@@ -18,10 +18,15 @@
     "sirv": "^0.4.0"
   },
   "devDependencies": {
+    "autoprefixer": "^9.7.1",
     "concurrently": "^5.0.0",
+    "postcss": "^7.0.21",
+    "pug": "^2.0.4",
     "sapper": "^0.27.0",
+    "stylus": "^0.54.7",
     "svelte": "^3.0.0",
     "svelte-loader": "^2.9.0",
+    "svelte-preprocess": "^3.2.6",
     "webpack": "^4.7.0"
   }
 }

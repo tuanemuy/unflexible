@@ -15,8 +15,8 @@ express() // You can also use Express
 	)
 	.listen({
     port: PORT,
-    host: 'dev.childhooooo.design'
-    //host: '127.0.0.1'
+    //host: 'dev.childhooooo.design'
+    //host: '0.0.0.0'
   }, err => {
 		if (err) console.log('error', err);
 	});
