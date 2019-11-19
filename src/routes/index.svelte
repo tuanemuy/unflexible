@@ -2,12 +2,14 @@
 svelte:head
     title Rustic
 
-main.main
-    h1 We are Rustic!
+.index
 </template>
 
+<script>
+</script>
+
 <style lang="stylus">
-.main
+.index
     position: relative
     z-index: 5
 </style>
