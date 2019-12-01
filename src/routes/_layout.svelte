@@ -1,15 +1,14 @@
-<template lang="pug">
-.app
-    slot
-</template>
-
-<script>
-//export let segment;
-</script>
+<div class="app">
+    <slot></slot>
+</div>
 
 <style global lang="stylus">
 html
     font-size: 16px
+
+@media only screen and (max-width: 768px)
+    html
+        font-size: 14px
 
 body
     font-family: -apple-system, BlinkMacSystemFont, Verdana, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, "Yu Gothic", YuGothic, Arial, "メイリオ", Meiryo, sans-serif
@@ -32,21 +31,86 @@ p
     flex-wrap: wrap
     list-style: none
 
-    &__left
+    &__flex-start
         justify-content: flex-start
 
     &__center
         justify-content: center
 
-    &__right
+    &__flex-end
         justify-content: flex-end
 
-    &--item
-        padding: .5rem
+    &__space-between
+        justify-content: space-between
 
+    &__space-around
+        justify-content: space-around
+
+    &--item
         for num in (1..5)
             &__{num}
                 width: (100/num)%
+
+.form
+    label
+        display: block
+        margin-top: 1rem
+        padding: 0 .25rem
+        color: #999999
+        font-size: .9rem
+        font-weight: 600
+
+        &:first-child
+            margin-top: 0
+
+    .group
+        margin-top: 1rem
+        border-radius: 3px
+        overflow: hidden
+
+        &:first-child
+            margin-top: 0
+
+    label + .group
+        margin-top: .25rem
+
+    .line
+        position: relative
+        display: flex
+
+    .line + .line
+        margin-top: .5rem
+
+    input, select, textarea
+        width: 100%
+        padding: .75rem
+        font-weight: 500
+        color: #242424
+        background-color: #f3f3f3
+        border-radius: 3px
+
+        &:focus
+            outline: none
+            box-shadow: 0px 0px 4px rgba(#000000, .1) inset
+
+    textarea
+        height: 6rem
+
+    .note
+        //margin-top: .5rem
+        padding: .5rem .75rem
+        font-size: .9rem
+        font-weight: 500
+        background-color: #ff3d00
+        background-color: #999999
+        background-color: #149497
+        color: #ffffff
+
+    hr
+        margin-top: 1.5rem
+        height: 1px
+        border: none
+        background-color: #149497
 
 /*!
  * ress.css • v2.0.1

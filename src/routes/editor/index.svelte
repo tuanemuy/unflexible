@@ -1,45 +1,32 @@
-<script context="module">
-export async function preload({ params, query }) {
-    const res = await this.fetch(`editor.json`);
-    const data = await res.json();
-
-    if(res.status === 200) {
-        return { mock: data };
-    } else {
-        this.error(res.status, data.message);
-    }
-}
-</script>
-
 <script>
-import { stores } from '@sapper/app'
-import Eyecatch from '../../components/Eyecatch.svelte'
-import Section from '../../components/Section.svelte'
-
-const { session } = stores();
-
-export let mock;
+import Preview from '../../components/Preview.svelte'
+import Edit from '../../components/Edit.svelte'
 </script>
 
-<style>
-.editor {
-    position: relative;
-    z-index: 5;
-}
+<style lang="stylus">
+.edit
+    position: fixed
+    width: 360px
+    height: 100vh
+    background-color: #ffffff
+    overflow: scroll
+    box-shadow: 0px 0px 4px rgba(#000000, .1)
+
+.preview
+    margin-left: 360px
+    width: calc(100vw - 360px)
+    overflow-x: scroll
 </style>
 
 <svelte:head>
-    <title>Rustic Editor</title>
+    <title>ホームページエディター | Stacked</title>
+    <meta name="description" content="いちばん簡単なホームページ制作">
 </svelte:head>
 
-{#if mock}
-    <div class="editor">
-        <Eyecatch />
-        <h1>{mock.title}</h1>
-        <main>
-            {#each mock.sections as section, index}
-                <Section {...section}/>
-            {/each}
-        </main>
-    </div>
-{/if}
+<div class="edit">
+    <Edit/>
+</div>
+
+<div class="preview">
+    <Preview/>
+</div>
