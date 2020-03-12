@@ -1,7 +1,7 @@
 <script>
 import EditComponent from './EditComponent.svelte';
-import AddComponent from '../AddComponent.svelte';
-import { componentsSections } from '../../stores/data.js';
+import AddComponent from '../element/AddComponent.svelte';
+import { componentsSections } from '../../stores/dom/componentsSections.js';
 
 export let sectionId;
 </script>

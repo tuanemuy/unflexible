@@ -1,23 +1,25 @@
 <script>
 import Input from '../Input.svelte';
-import EditParam from './EditParam.svelte';
+import EditParameter from './EditParameter.svelte';
 import TL from '../../lib/templateLoader.js';
 import Types from '../../lib/types.js';
-import Data from '../../stores/data.js';
-import { components, componentOrder, lastComponentId, headingsSections } from '../../stores/data.js';
+import { getHeading, createHeading } from '../../stores/dom.js';
+import { components, componentOrder } from '../../stores/dom/component.js';
+import { headingsSections } from '../../stores/dom/headingsSections.js';
 
 export let sectionId;
-let id;
 
-$: {
-    const relation = $headingsSections.find(r => r.sectionId === sectionId);
-    if(relation) {
-        id = relation.headingId;
+$: heading = getHeading(id ,$components);
+$: id = ensureExisting(sectionId, $headingsSections, $componentOrder);
+
+function ensureExisting(targetId, relations, orderList) {
+    const relation = relations.find(r => r.sectionId === targetId);
+    if(!relation) {
+        return createHeading(targetId, orderList);
     } else {
-        const addedId = Data.addList(components, componentOrder, lastComponentId, $lastComponentId, Types.component());
-        headingsSections.update(r => [...r, Types.relation('section', sectionId, 'heading', addedId)]);
+        return relation.headingId;
     }
-};
+}
 </script>
 
 <style lang="stylus">
@@ -28,7 +30,7 @@ $: {
 </style>
 
 <label>見出し</label>
-{#if $components[id]}
+{#if typeof heading !== 'undefined'}
     <div class="component">
         <Input
             type="checkbox"
@@ -39,7 +41,7 @@ $: {
             defaultValue="true"
         />
 
-        {#if $components[id].show}
+        {#if heading.show}
             <Input
                 type="number"
                 name="コンポーネントとの間隔"
@@ -59,8 +61,8 @@ $: {
                 defaultValue=""
             />
 
-            <EditParam
-                templateUrl={$components[id].templateUrl}
+            <EditParameter
+                templateUrl={heading.templateUrl}
                 componentId={id}
             />
         {/if}

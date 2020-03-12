@@ -3,13 +3,13 @@ import Input from '../Input.svelte';
 import EditComponent from './EditComponent.svelte';
 import EditComponents from './EditComponents.svelte';
 import EditHeading from './EditHeading.svelte';
-import RemoveSection from '../RemoveSection.svelte';
+import RemoveSection from '../element/RemoveSection.svelte';
 import TL from '../../lib/templateLoader.js';
-import Data from '../../stores/data.js';
-import { sections } from '../../stores/data.js';
-import { editingId } from '../../stores/editing.js';
+import { editingId } from '../../stores/app.js';
+import { sections } from '../../stores/dom/section.js';
+import { getSection } from '../../stores/dom.js';
 
-if(!$sections[$editingId]) editingId.set(null);
+if(typeof getSection($editingId, $sections) === 'undefined') editingId.set(null);
 
 const forms = [
     {

@@ -1,9 +1,7 @@
 <script>
-import Eyecatch from './Eyecatch.svelte';
 import Section from './Section.svelte';
-import AddSection from './AddSection.svelte';
-import Data from '../stores/data.js';
-import { sectionOrder } from '../stores/data.js';
+import AddSection from './element/AddSection.svelte';
+import { sectionOrder } from '../stores/dom/section.js';
 </script>
 
 <main>

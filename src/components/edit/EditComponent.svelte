@@ -1,25 +1,17 @@
 <script>
 import Input from '../Input.svelte';
-import EditParam from './EditParam.svelte';
-import RemoveComponent from '../RemoveComponent.svelte';
+import EditParameter from './EditParameter.svelte';
+import RemoveComponent from '../element/RemoveComponent.svelte';
 import TL from '../../lib/templateLoader.js';
-import Types from '../../lib/types.js';
-import { components } from '../../stores/data.js';
+import { getComponent } from '../../stores/dom.js';
+import { components } from '../../stores/dom/component.js';
 
-export let sectionId;
 export let id;
+
+$: component = getComponent(id, $components);
 </script>
 
-<style lang="stylus">
-.component
-    position: relative
-    z-index: 5
-    margin-top: 1rem
-    padding: 1rem 1rem
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, .1)
-</style>
-
-{#if $components[id]}
+{#if typeof component !== 'undefined'}
     <div class="component">
         <Input
             type="template"
@@ -30,11 +22,20 @@ export let id;
             defaultValue=""
         />
 
-        <EditParam
-            templateUrl={$components[id].templateUrl}
+        <EditParameter
+            templateUrl={component.templateUrl}
             componentId={id}
         />
 
         <RemoveComponent componentId={id}/>
     </div>
 {/if}
+
+<style lang="stylus">
+.component
+    position: relative
+    z-index: 5
+    margin-top: 1rem
+    padding: 1rem 1rem
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, .1)
+</style>

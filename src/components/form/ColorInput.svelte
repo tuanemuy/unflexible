@@ -24,6 +24,18 @@ $: {
 };
 </script>
 
+<label for="">{name}</label>
+<div class="group">
+    <div class="line">
+        <input type="text" bind:value={hex}>
+        <input type="color" bind:value={hex}>
+    </div>
+    <div class="line">
+        <input type="text" bind:value={alpha}>
+        <input type="range" bind:value={alpha} min="0" max="1" step=".1">
+    </div>
+</div>
+
 <style lang="stylus">
 input[type="text"]
     width: 8em
@@ -40,15 +52,3 @@ input[type="range"]
     &:focus
         box-shadow: none
 </style>
-
-<label for="">{name}</label>
-<div class="group">
-    <div class="line">
-        <input type="text" bind:value={hex}>
-        <input type="color" bind:value={hex}>
-    </div>
-    <div class="line">
-        <input type="text" bind:value={alpha}>
-        <input type="range" bind:value={alpha} min="0" max="1" step=".1">
-    </div>
-</div>

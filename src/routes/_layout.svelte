@@ -26,31 +26,6 @@ p
         width: 100%
         max-width: 100%
 
-.columns
-    display: flex
-    flex-wrap: wrap
-    list-style: none
-
-    &__flex-start
-        justify-content: flex-start
-
-    &__center
-        justify-content: center
-
-    &__flex-end
-        justify-content: flex-end
-
-    &__space-between
-        justify-content: space-between
-
-    &__space-around
-        justify-content: space-around
-
-    &--item
-        for num in (1..5)
-            &__{num}
-                width: (100/num)%
-
 .form
     label
         display: block
@@ -92,6 +67,9 @@ p
         &:focus
             outline: none
             box-shadow: 0px 0px 4px rgba(#000000, .1) inset
+
+    input
+        white-space: nowrap
 
     textarea
         height: 6rem

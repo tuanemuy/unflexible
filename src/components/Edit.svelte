@@ -1,10 +1,25 @@
 <script>
 import EditSection from './edit/EditSection.svelte';
 import EditPage from './edit/EditPage.svelte';
-import { editingId } from '../stores/editing.js';
+import ResetAll from './element/ResetAll.svelte';
+import { editingId } from '../stores/app.js';
 
-$: title = $editingId == null ? 'ページの編集' : 'セクションの編集';
+$: title = $editingId === null ? 'ページの編集' : 'セクションの編集';
 </script>
+
+<!--
+<ResetAll/>
+-->
+
+<h2>{title}</h2>
+
+<div>
+    {#if $editingId === null}
+        <EditPage/>
+    {:else}
+        <EditSection/>
+    {/if}
+</div>
 
 <style lang="stylus">
 h2
@@ -17,22 +32,6 @@ h2
     background-color: #ffffff
     box-shadow: 0px 0px 4px rgba(#000000, .1)
 
-.note
-    text-align: center
-    color: #888888
-
-.edit
+div
     padding: 1.5rem
 </style>
-
-<h2>{title}</h2>
-
-<div class="edit">
-
-{#if $editingId == null}
-    <EditPage/>
-{:else}
-    <EditSection/>
-{/if}
-
-</div>

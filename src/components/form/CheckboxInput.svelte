@@ -13,6 +13,12 @@ if(typeof $targetStore[id][key] === 'undefined') {
 }
 </script>
 
+<label>{name}</label>
+<div class="group">
+    <input type=checkbox bind:checked={$targetStore[id][key]}>
+    <span></span>
+</div>
+
 <style lang="stylus">
 .group
     position: relative
@@ -59,9 +65,3 @@ input[type="checkbox"]:checked
     ~ span::after
         left: 3.125rem
 </style>
-
-<label>{name}</label>
-<div class="group">
-    <input type=checkbox bind:checked={$targetStore[id][key]}>
-    <span></span>
-</div>

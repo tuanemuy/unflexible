@@ -1,13 +1,45 @@
 <script>
-import Template from './Template.svelte';
 import Heading from './Heading.svelte';
-import Components from './Components.svelte';
-import SelectSection from './SelectSection.svelte';
-import { sections } from '../stores/data.js';
+import Columns from './Columns.svelte';
+import SelectSection from './element/SelectSection.svelte';
+import { getSection } from '../stores/dom.js';
+import { sections } from '../stores/dom/section.js';
 
 export let id;
-$: section = $sections[id];
+$: section = getSection(id, $sections);
 </script>
+
+{#if typeof section !== 'undefined'}
+    {#if !section.isTitle}
+        <section
+            id={'section_' + id}
+            class="section section__{section.type}"
+            style="background-image: url({section.backgroundUrl});background-color: {section.backgroundColor}"
+        >
+            <div class="wrap wrap__{section.wrap}">
+                <Heading sectionId={id}/>
+                <Columns sectionId={id} {...section}/>
+            </div>
+            <div class="select">
+                <SelectSection {id}/>
+            </div>
+        </section>
+    {:else}
+        <div
+            id="section__{id}"
+            class="section section__{section.type}"
+            style="background-image: url({section.backgroundUrl});background-color: {section.backgroundColor}"
+        >
+            <div class="wrap wrap__{section.wrap}">
+                <Heading sectionId={id}/>
+                <Columns sectionId={id} {...section}/>
+            </div>
+            <div class="select">
+                <SelectSection {id}/>
+            </div>
+        </div>
+    {/if}
+{/if}
 
 <style lang="stylus">
 .section
@@ -38,33 +70,3 @@ $: section = $sections[id];
         right: 1.5rem
         transform: translateY(-100%)
 </style>
-
-{#if !section.isTitle}
-    <section
-        {id}
-        class="section section__{section.type}"
-        style="background-image: url({section.backgroundUrl});background-color: {section.backgroundColor}"
-    >
-        <div class="wrap wrap__{section.wrap}">
-            <Heading sectionId={id}/>
-            <Components sectionId={id} {...section}/>
-        </div>
-        <div class="select">
-            <SelectSection target={id}/>
-        </div>
-    </section>
-{:else}
-    <div
-        id="section__{id}"
-        class="section section__{section.type}"
-        style="background-image: url({section.backgroundUrl});background-color: {section.backgroundColor}"
-    >
-        <div class="wrap wrap__{section.wrap}">
-            <Heading sectionId={id}/>
-            <Components sectionId={id} {...section}/>
-        </div>
-        <div class="select">
-            <SelectSection target={id}/>
-        </div>
-    </div>
-{/if}

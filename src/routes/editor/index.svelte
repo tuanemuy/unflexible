@@ -1,6 +1,6 @@
 <script>
-import Preview from '../../components/Preview.svelte'
-import Edit from '../../components/Edit.svelte'
+import Preview from '../../components/Preview.svelte';
+import Edit from '../../components/Edit.svelte';
 </script>
 
 <style lang="stylus">
@@ -9,13 +9,14 @@ import Edit from '../../components/Edit.svelte'
     width: 360px
     height: 100vh
     background-color: #ffffff
-    overflow: scroll
+    overflow-x: hidden
+    overflow-y: scroll
     box-shadow: 0px 0px 4px rgba(#000000, .1)
 
 .preview
     margin-left: 360px
     width: calc(100vw - 360px)
-    overflow-x: scroll
+    overflow: hidden scroll
 </style>
 
 <svelte:head>

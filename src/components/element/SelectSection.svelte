@@ -1,12 +1,16 @@
 <script>
-import { editingId } from '../stores/editing.js';
-export let target;
-$: display = target.split('_').slice(-1);
+import { editingId } from '../../stores/app.js';
 
-function handleClick() {
-    editingId.set(target);
-}
+export let id;
+$: display = id.split('_').slice(-1);
 </script>
+
+<button
+    on:click="{() => { editingId.set(id) }}"
+    class="{ id == $editingId ? 'selected' : '' }"
+>
+    {display}
+</button>
 
 <style lang="stylus">
 button
@@ -34,7 +38,3 @@ button
         color: #ffffff
         background-color: #149794
 </style>
-
-<button on:click={handleClick} class="{ target == $editingId ? 'selected' : '' }">
-    {display}
-</button>

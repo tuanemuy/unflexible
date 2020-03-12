@@ -17,16 +17,6 @@ if(typeof $targetStore[id][key] === 'undefined') {
 }
 </script>
 
-<style lang="stylus">
-.line
-    align-items: center
-
-span
-    width: 5rem
-    text-align: center
-    font-weight: 500
-</style>
-
 <label>{name}</label>
 <div class="group">
     <div class="line">
@@ -37,3 +27,13 @@ span
         {/if}
     </div>
 </div>
+
+<style lang="stylus">
+.line
+    align-items: center
+
+span
+    width: 5rem
+    text-align: center
+    font-weight: 500
+</style>

@@ -3,22 +3,44 @@ const components = [
     name: 'sample',
     html: `
 <div class="{{class}}" id="{{id}}">
-  <h1>{{見出し:heading:text=見出し}}</h1>
+  <img src="{{アイコンURL:icon:image=url}}" alt="{{alt:alt:text=アイコン}}">
+  <h3>{{見出し:heading:text=見出しです}}</h3>
+  <p>{{本文:content:textarea=本文です。}}</p>
 </div>
 
 <style>
 .{{class}} {
   position: relative;
   z-index: 5;
+  height: 100%;
+  padding: 1.5rem;
+  background-color: {{背景色:background_color:color=#efefef}};
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, .25);
 }
 
-.{{class}} h1 {
-  color: #242424;
+.{{class}} img {
+  display: block;
+  width: 60px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.{{class}} h3, .{{class}} p {
+  line-height: 1.4;
+}
+
+.{{class}} h3 {
+  margin-top: 1rem;
   text-align: center;
+  font-size: 1.4rem;
 }
 
-#{{id}} h1 {
-  color: {{タイトルカラー:color:color=#242424}};
+.{{class}} p {
+  margin-top: .5rem;
+}
+
+.{{id}} h3, .{{id}} p {
+  color: {{文字色:text_color:color=#242424}};
 }
 </style>
     `
@@ -79,14 +101,17 @@ const components = [
 .{{class}} h3 {
   color: #242424;
   text-align: center;
+  font-weight: 300;
 }
 
 #{{id}} h2 {
   color: {{テキストカラー:color:color=#242424}};
+  font-size: {{タイトルサイズ:main_size:rem=2.4}}rem;
 }
 
 #{{id}} h3 {
   color: {{サブテキストカラー:subcolor:color=#242424}};
+  font-size: {{サブタイトルカラー:sub_size:rem=1.4}}rem;
 }
 </style>
     `
